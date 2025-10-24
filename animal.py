@@ -7,11 +7,14 @@ Username: diyfy006
 This is my own work as defined by the University's Academic Integrity Policy.
 """
 
-class Animal:
-    def __init__(self, name, species, age):
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+    def __init__(self, name, species, age, diet):
         self.__name = name
         self.__species = species
         self.__age = age
+        self.__diet = diet
 
     def get_name(self):
         return self.__name
@@ -40,3 +43,7 @@ class Animal:
     name = property(get_name, set_name)
     species = property(get_species, set_species)
     age = property(get_age, set_age)
+
+    @abstractmethod
+    def make_sound(self):
+        pass
