@@ -1,3 +1,12 @@
+"""
+File: zookeeper.py
+Description: Represents a zookeeper subclass of Staff
+Author: Fabian DiGrazia
+ID: 110459219
+Username: diyfy006
+This is my own work as defined by the University's Academic Integrity Policy.
+"""
+
 from staff import Staff
 
 class Zookeeper(Staff):
