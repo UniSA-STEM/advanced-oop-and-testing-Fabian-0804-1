@@ -25,6 +25,9 @@ class Animal(ABC):
     def get_age(self):
         return self.__age
 
+    def get_diet(self):
+        return self.__diet
+
     def set_name(self, value):
         if not value:
             raise ValueError("Name cannot be empty.")
@@ -40,10 +43,22 @@ class Animal(ABC):
             raise ValueError("Age must be a non-negative integer.")
         self.__age = value
 
+    def set_diet(self, value):
+        if not value:
+            raise ValueError("Diet cannot be empty.")
+        self.__diet = str(value)
+
     name = property(get_name, set_name)
     species = property(get_species, set_species)
     age = property(get_age, set_age)
+    diet = property(get_diet, set_diet)
 
     @abstractmethod
     def make_sound(self):
         pass
+
+    def eat(self):
+        return f"{self.__name} is eating."
+
+    def sleep(self):
+        return f"{self.__name} is sleeping."
