@@ -13,5 +13,11 @@ class Veterinarian(Staff):
     def __init__(self, name):
         super().__init__(name, role="veterinarian")
 
-    def perform_duties(self):
-        return "Conducts health checks and updates records"
+    def feed_animal(self, animal):
+        return f"Veterinarian {self.name} assists feeding {animal.name} if needed."
+
+    def clean_enclosure(self, enclosure):
+        return f"Veterinarian {self.name} is not responsible for cleaning but may assist if required."
+
+    def conduct_health_check(self, animal):
+        return f"Veterinarian {self.name} performs a health check on {animal.name}."

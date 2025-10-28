@@ -11,6 +11,8 @@ class Staff:
     def __init__(self, name, role=None):
         self.__name = name
         self.__role = role
+        self.__assigned_animals = []
+        self.__assigned_enclosures = []
 
 
     def get_name(self):
@@ -35,3 +37,23 @@ class Staff:
 
     name = property(get_name, set_name)
     role = property(get_role, set_role)
+
+    def get_assigned_animals(self):
+        return self.__assigned_animals
+
+    def get_assigned_enclosures(self):
+        return self.__assigned_enclosures
+
+
+    assigned_animals = property(get_assigned_animals)
+    assigned_enclosures = property(get_assigned_enclosures)
+
+    def assign_animal(self, animal):
+        if animal in self.__assigned_animals:
+            raise ValueError("Animal already assigned.")
+        self.__assigned_animals.append(animal)
+
+    def assign_enclosure(self, enclosure):
+        if enclosure in self.__assigned_enclosures:
+            raise ValueError("Enclosure already assigned.")
+        self.__assigned_enclosures.append(enclosure)

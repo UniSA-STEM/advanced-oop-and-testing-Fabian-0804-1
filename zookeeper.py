@@ -13,5 +13,11 @@ class Zookeeper(Staff):
     def __init__(self, name):
         super().__init__(name, role="zookeeper")
 
-    def perform_duties(self):
-        return "Feeds animals and cleans enclosures"
+    def feed_animal(self, animal):
+        return f"Zookeeper {self.name} feeds {animal.name}."
+
+    def clean_enclosure(self, enclosure):
+        return f"Zookeeper {self.name} cleans {enclosure.name}."
+
+    def conduct_health_check(self, animal):
+        return f"Zookeeper {self.name} observes {animal.name} and reports to the veterinarian."
