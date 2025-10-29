@@ -72,6 +72,8 @@ class Enclosure:
 
 
     def add_animal(self, animal):
+        if hasattr(animal, "is_under_treatment") and animal.is_under_treatment():
+            raise ValueError("Animal is under treatment and cannot be moved.")
         if len(self.__animals) >= self.__capacity:
             raise ValueError("Enclosure is at capacity.")
         if self.__current_species is None:

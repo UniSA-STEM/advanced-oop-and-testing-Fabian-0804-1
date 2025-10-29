@@ -8,6 +8,7 @@ This is my own work as defined by the University's Academic Integrity Policy.
 """
 
 from abc import ABC, abstractmethod
+from health_record import HealthRecord
 
 class Animal(ABC):
     def __init__(self, name, species, age, diet):
@@ -15,6 +16,7 @@ class Animal(ABC):
         self.__species = species
         self.__age = age
         self.__diet = diet
+        self.__health_records = []
 
     def get_name(self):
         return self.__name
@@ -27,6 +29,9 @@ class Animal(ABC):
 
     def get_diet(self):
         return self.__diet
+
+    def get_health_records(self):
+        return self.__health_records
 
     def set_name(self, value):
         if not value:
@@ -52,6 +57,7 @@ class Animal(ABC):
     species = property(get_species, set_species)
     age = property(get_age, set_age)
     diet = property(get_diet, set_diet)
+    health_records = property(get_health_records)
 
     @abstractmethod
     def make_sound(self):
@@ -62,3 +68,27 @@ class Animal(ABC):
 
     def sleep(self):
         return f"{self.__name} is sleeping."
+
+
+    def add_health_record(self, record):
+        if not isinstance(record, HealthRecord):
+            raise ValueError("Record must be a HealthRecord.")
+        self.__health_records.append(record)
+
+    def is_under_treatment(self):
+        return any(r.under_treatment for r in self.__health_records)
+
+    def latest_health_summary(self):
+        if not self.__health_records:
+            return "No health records."
+        r = self.__health_records[-1]
+        status = "under treatment" if r.under_treatment else "resolved"
+        parts = [
+            f"{self.__name}: {r.issue}",
+            f"severity: {r.severity}",
+            f"date: {r.date}",
+            status
+        ]
+        if r.treatment:
+            parts.append(f"treatment: {r.treatment}")
+        return " | ".join(parts)
