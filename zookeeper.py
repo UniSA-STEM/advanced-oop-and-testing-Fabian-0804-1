@@ -17,7 +17,8 @@ class Zookeeper(Staff):
         return f"Zookeeper {self.name} feeds {animal.name}."
 
     def clean_enclosure(self, enclosure):
-        return f"Zookeeper {self.name} cleans {enclosure.name}."
+        msg = enclosure.clean_enclosure()
+        return f"Zookeeper {self.name} cleans {enclosure.name}. {msg}"
 
     def conduct_health_check(self, animal):
         return f"Zookeeper {self.name} observes {animal.name} and reports to the veterinarian."

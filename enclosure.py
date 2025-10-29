@@ -9,11 +9,14 @@ This is my own work as defined by the University's Academic Integrity Policy.
 
 class Enclosure:
     _ALLOWED_ENVIRONMENTS = ("savannah", "aquatic", "rainforest", "desert", "arctic", "grassland")
+    _ALLOWED_SIZES = ("small", "medium", "large")
 
-    def __init__(self, name, environment, capacity):
+    def __init__(self, name, environment, capacity, size, clean=True):
         self.__name = name
         self.__environment = environment
         self.__capacity = capacity
+        self.__size = size
+        self.__clean = clean
         self.__animals = []
         self.__current_species = None
 
@@ -25,6 +28,12 @@ class Enclosure:
 
     def get_capacity(self):
         return self.__capacity
+
+    def get_size(self):
+        return self.__size
+
+    def get_clean(self):
+        return self.__clean
 
     def get_animals(self):
         return self.__animals
@@ -44,9 +53,21 @@ class Enclosure:
             raise ValueError("Capacity must be an integer of 1 or more.")
         self.__capacity = value
 
+    def set_size(self, value):
+        if not value or str(value).lower() not in self._ALLOWED_SIZES:
+            raise ValueError(f"Size must be one of: {', '.join(self._ALLOWED_SIZES)}.")
+        self.__size = str(value).lower()
+
+    def set_clean(self, value):
+        if not isinstance(value, bool):
+            raise ValueError("Clean value must be True or False.")
+        self.__clean = value
+
     name = property(get_name, set_name)
     environment = property(get_environment, set_environment)
     capacity = property(get_capacity, set_capacity)
+    size = property(get_size, set_size)
+    clean = property(get_clean, set_clean)
     animals = property(get_animals)
 
 
@@ -71,8 +92,14 @@ class Enclosure:
     def list_animal_names(self):
         return [a.name for a in self.__animals]
 
+    def clean_enclosure(self):
+        self.__clean = True
+        return f"{self.__name} is now clean."
+
     def get_enclosure_status(self):
+        status = "Clean" if self.__clean else "Dirty"
         occupants = ", ".join(self.list_animal_names()) or "none"
         return (f"Enclosure: {self.__name} | Environment: {self.__environment} | "
+                f"Size: {self.__size} | Status: {status} | "
                 f"Capacity: {len(self.__animals)}/{self.__capacity} | "
                 f"Species: {self.__current_species or 'unset'} | Animals: {occupants}")
