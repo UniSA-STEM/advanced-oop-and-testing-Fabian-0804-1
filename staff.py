@@ -8,6 +8,8 @@ This is my own work as defined by the University's Academic Integrity Policy.
 """
 
 class Staff:
+    """Base class for staff members working in the zoo."""
+
     def __init__(self, name, role=None):
         self.__name = name
         self.__role = role

@@ -8,6 +8,8 @@ This is my own work as defined by the University's Academic Integrity Policy.
 """
 
 class HealthRecord:
+    """Stores one health entry for an animal."""
+
     def __init__(self, issue, severity, date, treatment=None, under_treatment=False, notes=None):
         self.__issue = issue
         self.__severity = severity

@@ -8,6 +8,8 @@ This is my own work as defined by the University's Academic Integrity Policy.
 """
 
 class Zoo:
+    """Main class that manages animals, staff, and enclosures."""
+
     def __init__(self, name):
         self.__name = name
         self.__animals = []

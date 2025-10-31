@@ -10,6 +10,8 @@ This is my own work as defined by the University's Academic Integrity Policy.
 from staff import Staff
 
 class Veterinarian(Staff):
+    """Veterinarian responsible for animal health."""
+
     def __init__(self, name):
         super().__init__(name, role="veterinarian")
 

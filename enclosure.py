@@ -8,6 +8,8 @@ This is my own work as defined by the University's Academic Integrity Policy.
 """
 
 class Enclosure:
+    """Represents an enclosure that holds animals."""
+
     _ALLOWED_ENVIRONMENTS = ("savannah", "aquatic", "rainforest", "desert", "arctic", "grassland")
     _ALLOWED_SIZES = ("small", "medium", "large")
 

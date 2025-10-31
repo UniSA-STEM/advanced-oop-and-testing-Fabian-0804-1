@@ -11,6 +11,8 @@ from abc import ABC, abstractmethod
 from health_record import HealthRecord
 
 class Animal(ABC):
+    """Base class for all animals."""
+
     def __init__(self, name, species, age, diet):
         self.__name = name
         self.__species = species
